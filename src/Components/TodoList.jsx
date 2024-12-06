@@ -18,7 +18,7 @@ function TodoList({ todos, onOpenAddPopup, onDelete, onEdit }) {
 
     return (
         <div className="relative flex flex-col items-center bg-white w-full h-auto pb-20 border border-gray-300">
-            <h1 className="font-bold uppercase p-2 text-xl text-gray-600" >todolist</h1>
+            <h1 className="font-bold uppercase p-2 text-xl text-gray-600" >todo list</h1>
             <button className="absolute right-4 top-4 bg-green-400 text-white rounded-sm p-2 text-sm hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 shadow-sm active:bg-green-600 transition duration-200 ease-in-out"
                 onClick={() => onOpenAddPopup()}>
                 <i class="fa-solid fa-plus"></i>

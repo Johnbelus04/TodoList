@@ -8,7 +8,7 @@ function AddTodoPopup({ closeAddPopup, onAddTodo }) {
         e.preventDefault();
         console.log(text);
         if(text === '') {
-           setError('Task is null! Enter task...');
+           setError('Task is empty! Enter task...');
         } else {
             onAddTodo({
                 id: Date.now(),

@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import TodoList from './Components/TodoList';
 import AddTodoPopup from './Components/AddTodoPopup';
@@ -8,6 +8,9 @@ function App() {
     const [todos, setTodos] = useState([]);
     const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
 
+    useEffect(() => {
+        setTodos(JSON.parse(localStorage.getItem('todos')));
+    }, []);
 
     const openAddPopup = () => {
         setIsAddPopupOpen(true);
@@ -17,8 +20,11 @@ function App() {
         setIsAddPopupOpen(false);
     }
 
-    const addTodo = (todo) => {
-        setTodos([...todos, todo]);
+    const addTodo = (newTodo) => {
+        const updatedTodos = [...todos, newTodo];
+        // save to local storage
+        localStorage.setItem("todos", JSON.stringify(updatedTodos));
+        setTodos(updatedTodos);
     }
 
     const editTodo = (newTodo) => {
@@ -31,10 +37,10 @@ function App() {
 
     return (
         <>
-            <header className="bg-amber-100 p-5">
-                <h1 className="text-black-500 font-sans text-2xl text-center">Todo List</h1>
+            <header className="bg-blue-500 p-5 text-white">
+                <h1 className="text-black-500 uppercase font-sans text-2xl text-center">Todo List</h1>
             </header>
-            <main className="flex w-full h-auto flex-col p-20 gap-5 items-center bg-blue-300">
+            <main className="flex w-full flex-col p-20 gap-5 items-center bg-blue-300">
                 <TodoList todos={todos} onOpenAddPopup={openAddPopup} onDelete={deleteTodo} onEdit={editTodo} />
                 {isAddPopupOpen && <AddTodoPopup onAddTodo={addTodo} closeAddPopup={closeAddPopup} />}
             </main>
